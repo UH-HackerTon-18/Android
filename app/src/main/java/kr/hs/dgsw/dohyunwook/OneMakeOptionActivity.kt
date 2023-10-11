@@ -37,6 +37,9 @@ class OneMakeOptionActivity : AppCompatActivity() {
             }
 
         }
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
         binding.btnFemale.setOnClickListener {
             if ((!isMaleBackgroundReversed && !isFemaleBackgroundReversed) || (isMaleBackgroundReversed && !isFemaleBackgroundReversed)) {
                 if (!isFemaleBackgroundReversed) {

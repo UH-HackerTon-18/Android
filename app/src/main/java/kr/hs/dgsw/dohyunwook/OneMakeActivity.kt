@@ -24,5 +24,8 @@ class OneMakeActivity : AppCompatActivity() {
             intent.putExtra("message_key", message)
             startActivity(intent)
         }
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
     }
 }

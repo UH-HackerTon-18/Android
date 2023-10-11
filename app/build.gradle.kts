@@ -40,6 +40,9 @@ android {
 }
 
 dependencies {
+    implementation("androidx.viewpager2:viewpager2:1.1.0-beta02")
+    implementation ("com.github.bump tech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.13.0")
     implementation ("com.squareup.retrofit2:retrofit:2.9.0") // Retrofit 라이브러리
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0") // JSON 데이터를 자바 객체로 변환하기 위한 Gson 변환기]
     implementation("androidx.core:core-ktx:1.9.0")

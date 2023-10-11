@@ -1,8 +1,10 @@
 package kr.hs.dgsw.dohyunwook
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import kr.hs.dgsw.dohyunwook.data.Client
 import kr.hs.dgsw.dohyunwook.databinding.ActivityLoadingBinding
@@ -36,15 +38,17 @@ class LoadingActivity : AppCompatActivity() {
 //                    ) {
 //                        if (response.isSuccessful) {
 //                            val responseModel = response.body()
-//                            // 성공 처리
+//                            val intent = Intent(applicationContext, OneMakeResultActivity::class.java)
+//                            intent.putExtra("message_key", responseModel!!.world_id)
+//                            startActivity(intent)
 //                        } else {
-//                            // 오류 처리
+//                            Log.d("onResponse:!!!!!!", response.errorBody().toString())
 //                            // response.errorBody() 등을 통해 오류 상세 정보를 얻을 수 있음
 //                        }
 //                    }
 //
 //                    override fun onFailure(call: Call<ResponseMakeCharacter>, t: Throwable) {
-//                        // 요청 실패 시 수행할 작업
+//
 //                    }
 //                })
 
