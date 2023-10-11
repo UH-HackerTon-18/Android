@@ -7,5 +7,7 @@ class OneMakeOptionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_one_make_option)
+        val receivedMessage = intent.getStringExtra("message_key")
+
     }
 }

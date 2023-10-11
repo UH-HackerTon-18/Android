@@ -13,7 +13,7 @@ class IntroPage : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
         binding.btnStart.setOnClickListener {
-            startActivity(Intent(applicationContext, SelectActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP))
+            startActivity(Intent(applicationContext, SelectActivity::class.java))
         }
     }
 }

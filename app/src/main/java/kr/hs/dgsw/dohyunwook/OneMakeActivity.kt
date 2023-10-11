@@ -3,6 +3,7 @@ package kr.hs.dgsw.dohyunwook
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import kr.hs.dgsw.dohyunwook.databinding.ActivityIntroPageBinding
 import kr.hs.dgsw.dohyunwook.databinding.ActivityOneMakeBinding
 
@@ -14,7 +15,14 @@ class OneMakeActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
         binding.btnStart.setOnClickListener {
-            startActivity(Intent(applicationContext, OneMakeOptionActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP))
+            val message = binding.etSetTitle.text
+            if (message.isEmpty()) {
+                Toast.makeText(this, "세계관을 입력해주세요.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            val intent = Intent(this, OneMakeOptionActivity::class.java)
+            intent.putExtra("message_key", message)
+            startActivity(intent)
         }
     }
 }
