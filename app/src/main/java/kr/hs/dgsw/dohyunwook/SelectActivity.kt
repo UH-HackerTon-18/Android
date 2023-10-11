@@ -13,7 +13,7 @@ class SelectActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
         binding.ivOne.setOnClickListener {
-            startActivity(Intent(applicationContext, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP))
+            startActivity(Intent(applicationContext, OneMakeActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP))
         }
         binding.ivTwo.setOnClickListener {
 
