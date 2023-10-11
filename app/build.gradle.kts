@@ -40,7 +40,8 @@ android {
 }
 
 dependencies {
-
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0") // Retrofit 라이브러리
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0") // JSON 데이터를 자바 객체로 변환하기 위한 Gson 변환기]
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")

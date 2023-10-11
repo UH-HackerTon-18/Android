@@ -9,4 +9,4 @@ data class MainCharacter(
     val style: String,
     val character: String,
     val background_story: String
-)
+) : java.io.Serializable

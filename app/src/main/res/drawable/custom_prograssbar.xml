@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- ProgressBar의 바탕 (바탕색) -->
+    <item android:id="@android:id/background">
+        <clip>
+            <shape>
+                <corners android:radius="50dp" /> <!-- 진행률 표시 부분의 둥근 모서리 설정 -->
+                <solid android:color="@color/white" /> <!-- ProgressBar의 바탕색 설정 -->
+            </shape>
+        </clip>
+    </item>
+    <!-- ProgressBar의 진행률을 표시하는 부분 (진행률색) -->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners android:radius="50dp" /> <!-- 진행률 표시 부분의 둥근 모서리 설정 -->
+                <solid android:color="@color/green" /> <!-- ProgressBar의 진행률색 설정 -->
+            </shape>
+        </clip>
+    </item>
+</layer-list>
