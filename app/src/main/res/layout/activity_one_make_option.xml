@@ -319,6 +319,7 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_character_number"
                     android:background="@drawable/background_edit_text_line"
                     android:hint="주변인물의 수"
+                    android:inputType="number"
                     android:textColorHint="@color/hint_color"
                     android:fontFamily="@font/omyu"
                     android:textColor="@color/white"
