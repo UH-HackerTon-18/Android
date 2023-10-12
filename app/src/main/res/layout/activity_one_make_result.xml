@@ -79,6 +79,7 @@
                     android:layout_height="50dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginBottom="50dp"
+                    app:cardCornerRadius="10dp"
                     android:background="@drawable/background_button"
                     android:backgroundTint="@color/green"
                     app:layout_constraintEnd_toEndOf="@id/gl_right"

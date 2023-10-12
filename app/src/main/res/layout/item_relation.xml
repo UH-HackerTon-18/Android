@@ -40,7 +40,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="5dp"
         app:cardBackgroundColor="@color/box_gray"
-        app:cardCornerRadius="3dp">
+        app:cardCornerRadius="5dp">
         <TextView
             android:id="@+id/tv_item_chat_text"
             android:layout_width="match_parent"

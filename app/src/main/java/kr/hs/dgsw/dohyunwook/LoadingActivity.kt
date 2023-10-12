@@ -30,9 +30,6 @@ class LoadingActivity : AppCompatActivity() {
         val characterCount = receivedData!!.character_count
         val character = receivedData!!.main_character
 
-        intent.putExtra("message_key", "9c8b77ee-ab8b-4a1e-abc4-62758be6fcf8")
-        startActivity(intent)
-
 //        Client.service.postData(receivedData!!)
 //            .enqueue(object : Callback<ResponseMakeCharacter> {
 //                override fun onResponse(
@@ -61,7 +58,7 @@ class LoadingActivity : AppCompatActivity() {
                 "onCreate:!!!!!!!!!!!@ ",
                 "${receivedData.world_story}  ${receivedData.character_count}   ${receivedData.main_character?.species}"
             )
-            val needTime: Int = (characterCount * 20 * 1000) + 1000 * 60
+            val needTime: Int = (characterCount * 20 * 1000)
             for (progress in 0..100) {
                 // UI 업데이트를 위해 Handler를 사용
                 Handler(Looper.getMainLooper()).post {
@@ -75,6 +72,8 @@ class LoadingActivity : AppCompatActivity() {
                     e.printStackTrace()
                 }
             }
+            intent.putExtra("message_key", "0bdfc441-db26-4d6e-8d9e-5bd63478a74c")
+            startActivity(intent)
         }).start()
     }
 }

@@ -82,7 +82,7 @@
             android:fontFamily="@font/omyu"
             android:padding="10dp"
             android:text="12345"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="16dp" />
 
     </androidx.cardview.widget.CardView>
