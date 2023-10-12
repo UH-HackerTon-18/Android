@@ -60,12 +60,13 @@ class LoadingActivity : AppCompatActivity() {
 
                 // 100ms마다 업데이트
                 try {
-                    Thread.sleep(100)
+                    Thread.sleep(30)
                 } catch (e: InterruptedException) {
                     e.printStackTrace()
                 }
             }
-
+            val intent = Intent(applicationContext, OneMakeResultActivity::class.java)
+            startActivity(intent)
         }).start()
     }
 }

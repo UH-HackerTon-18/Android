@@ -64,94 +64,14 @@
                     android:orientation="vertical"
                     app:layout_constraintGuide_percent="0.95" />
 
-                <TextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/scdream"
-                    android:text="이름"
-                    android:textColor="@color/white"
-                    android:textSize="18dp"
-                    app:layout_constraintBottom_toTopOf="@id/iv_image"
-                    app:layout_constraintStart_toStartOf="@id/gl_left" />
-
                 <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/iv_image"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="64dp"
-                    android:src="@drawable/image"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toEndOf="@id/gl_right"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@id/gl_left"
-                    app:layout_constraintTop_toBottomOf="@id/logo" />
-
-                <TextView
-                    android:id="@+id/tv_explane"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/scdream"
-                    android:text="설명"
-                    android:textColor="@color/white"
-                    android:textSize="18dp"
-                    app:layout_constraintStart_toStartOf="@id/gl_left"
-                    app:layout_constraintTop_toBottomOf="@id/iv_image" />
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_explane"
+                    android:id="@+id/viewPager"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    app:cardBackgroundColor="@color/box_gray"
+                    app:layout_constraintStart_toStartOf="@id/gl_left"
                     app:layout_constraintEnd_toEndOf="@id/gl_right"
-                    app:layout_constraintStart_toStartOf="@id/gl_left"
-                    app:layout_constraintTop_toBottomOf="@id/tv_explane">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/omyu"
-                        android:padding="10dp"
-                        android:text="123"
-                        android:textColor="@color/black"
-                        android:textSize="16dp" />
-
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:id="@+id/tv_relation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:fontFamily="@font/scdream"
-                    android:text="주변 인물과의 관계"
-                    android:textColor="@color/white"
-                    android:textSize="18dp"
-                    app:layout_constraintStart_toStartOf="@id/gl_left"
-                    app:layout_constraintTop_toBottomOf="@id/cv_explane" />
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_relation"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:cardBackgroundColor="@color/box_gray"
-                    app:layout_constraintEnd_toEndOf="@id/gl_right"
-                    app:layout_constraintStart_toStartOf="@id/gl_left"
-                    app:layout_constraintTop_toBottomOf="@id/tv_relation">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/omyu"
-                        android:padding="10dp"
-                        android:text="123"
-                        android:textColor="@color/black"
-                        android:textSize="16dp" />
-                </androidx.cardview.widget.CardView>
+                    app:layout_constraintTop_toBottomOf="@id/logo"/>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/btn_start"
@@ -163,7 +83,7 @@
                     android:backgroundTint="@color/green"
                     app:layout_constraintEnd_toEndOf="@id/gl_right"
                     app:layout_constraintStart_toStartOf="@id/gl_left"
-                    app:layout_constraintTop_toBottomOf="@id/cv_relation">
+                    app:layout_constraintTop_toBottomOf="@id/viewPager">
 
                     <TextView
                         android:layout_width="wrap_content"

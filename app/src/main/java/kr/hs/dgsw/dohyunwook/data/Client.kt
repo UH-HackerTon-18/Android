@@ -23,5 +23,5 @@ object Client {
         .client(okHttpClient)
         .build()
 
-    val characterService: Service by lazy { retrofit.create(Service::class.java) }
+    val service: Service by lazy { retrofit.create(Service::class.java) }
 }
