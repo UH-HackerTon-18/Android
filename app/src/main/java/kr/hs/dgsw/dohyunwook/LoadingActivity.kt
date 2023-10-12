@@ -30,34 +30,34 @@ class LoadingActivity : AppCompatActivity() {
         val characterCount = receivedData!!.character_count
         val character = receivedData!!.main_character
 
+        Client.service.postData(receivedData!!)
+            .enqueue(object : Callback<ResponseMakeCharacter> {
+                override fun onResponse(
+                    call: Call<ResponseMakeCharacter>,
+                    response: Response<ResponseMakeCharacter>
+                ) {
+                    if (response.isSuccessful) {
+                        Log.d("onResponse: @@@@@@@@@@@@@", "성공")
+                        val responseModel = response.body()
+                        val intent = Intent(applicationContext, OneMakeResultActivity::class.java)
+                        intent.putExtra("message_key", responseModel!!.world_id)
+                        startActivity(intent)
+                    } else {
+                        Log.d("onResponse:!!!!!!", response.errorBody().toString())
+                    }
+                }
+
+                override fun onFailure(call: Call<ResponseMakeCharacter>, t: Throwable) {
+                    Log.d("onFailure: ", "###########")
+                    Toast.makeText(applicationContext, "네트워크 오류", Toast.LENGTH_SHORT).show()
+                }
+            })
+
         Thread(Runnable {
             Log.d(
                 "onCreate:!!!!!!!!!!!@ ",
                 "${receivedData.world_story}  ${receivedData.character_count}   ${receivedData.main_character?.species}"
             )
-//            Client.service.postData(receivedData!!)
-//                .enqueue(object : Callback<ResponseMakeCharacter> {
-//                    override fun onResponse(
-//                        call: Call<ResponseMakeCharacter>,
-//                        response: Response<ResponseMakeCharacter>
-//                    ) {
-//                        if (response.isSuccessful) {
-//                            Log.d("onResponse: @@@@@@@@@@@@@", "성공")
-//                            val responseModel = response.body()
-//                            val intent = Intent(applicationContext, OneMakeResultActivity::class.java)
-//                            intent.putExtra("message_key", responseModel!!.world_id)
-//                            startActivity(intent)
-//                        } else {
-//                            Log.d("onResponse:!!!!!!", response.errorBody().toString())
-//                            // response.errorBody() 등을 통해 오류 상세 정보를 얻을 수 있음
-//                        }
-//                    }
-//
-//                    override fun onFailure(call: Call<ResponseMakeCharacter>, t: Throwable) {
-//                        Log.d("onFailure: ", "###########")
-//                        Toast.makeText(applicationContext, "네트워크 오류", Toast.LENGTH_SHORT).show()
-//                    }
-//                })
             val needTime: Int = (characterCount * 20 * 1000) + 1000 * 60
             for (progress in 0..100) {
                 // UI 업데이트를 위해 Handler를 사용
@@ -67,13 +67,11 @@ class LoadingActivity : AppCompatActivity() {
 
                 // 100ms마다 업데이트
                 try {
-                    Thread.sleep((/*needTime / 100*/1).toLong())
+                    Thread.sleep((needTime / 100).toLong())
                 } catch (e: InterruptedException) {
                     e.printStackTrace()
                 }
             }
-            intent.putExtra("message_key", "73da9d03-8495-4d7f-8b26-9bf0f80e1e26").toString()
-            startActivity(intent)
         }).start()
     }
 }

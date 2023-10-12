@@ -64,18 +64,18 @@ class OneMakeOptionActivity : AppCompatActivity() {
             val title = receivedMessage
             Log.d("onCreate:!!!!!!!!!!!!! ", number.toString())
             val requestMakeCharacter:RequestMakeCharacter = RequestMakeCharacter(
+                characterNumber.toString().toInt(),
                 title.toString(),
                 MainCharacter(
-                    name.toString(),
-                    male,
-                    age.toString(),
                     species.toString(),
                     speciesExplain.toString(),
                     style.toString(),
+                    name.toString(),
+                    male,
+                    age.toString(),
                     character.toString(),
                     backGroundStory.toString()
                 ),
-                characterNumber.toString().toInt()
             )
             intent.putExtra("data", requestMakeCharacter)
             startActivity(intent)

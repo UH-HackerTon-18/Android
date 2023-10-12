@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import kr.hs.dgsw.dohyunwook.data.Client
 import kr.hs.dgsw.dohyunwook.databinding.ActivityOneMakeResultBinding
+import kr.hs.dgsw.dohyunwook.domain.Relation
 import kr.hs.dgsw.dohyunwook.domain.ResponseGetInfoByWorkldID
 import retrofit2.Call
 import retrofit2.Callback
@@ -51,11 +52,17 @@ class OneMakeResultActivity : AppCompatActivity() {
                     } else {
                         val errorBodyString = response.errorBody()?.string()
                         Log.d("Error Response Body", errorBodyString ?: "Empty error body")
+                        binding.viewPager.adapter = ImagePagerAdapter(listOf(R.drawable.image8.toString()), listOf("값을 불러오지 못했습니다."), listOf("값을 불러오지 못했습니다."), listOf(listOf(
+                            Relation("1", "untitle", "값을 불러오지 못했습니다.")
+                        )))
                     }
                 }
 
                 override fun onFailure(call: Call<ResponseGetInfoByWorkldID>, t: Throwable) {
                     Log.d("onResponse:", "실패")
+                    binding.viewPager.adapter = ImagePagerAdapter(listOf(R.drawable.image8.toString()), listOf("값을 불러오지 못했습니다."), listOf("값을 불러오지 못했습니다."), listOf(listOf(
+                        Relation("1", "untitle", "값을 불러오지 못했습니다.")
+                    )))
                 }
             })
 
@@ -73,13 +80,17 @@ class OneMakeResultActivity : AppCompatActivity() {
 
 
         binding.btnStart.setOnClickListener {
-            val intent = Intent(this, ChatActivity::class.java)
-            val currentPosition = binding.viewPager.currentItem
-            intent.putExtra("image", imageUr[currentPosition])
-            intent.putExtra("name", name[currentPosition])
-            intent.putExtra("id", id[currentPosition])
-            Log.d("OneMakeResultActivity", "현재 position: $currentPosition")
-            startActivity(intent)
+            try {
+                val intent = Intent(this, ChatActivity::class.java)
+                val currentPosition = binding.viewPager.currentItem
+                intent.putExtra("image", imageUr[currentPosition])
+                intent.putExtra("name", name[currentPosition])
+                intent.putExtra("id", id[currentPosition])
+                Log.d("OneMakeResultActivity", "현재 position: $currentPosition")
+                startActivity(intent)
+            } catch (e: Exception){
+                Log.d( "onCreate: Fail", "$e")
+            }
         }
     }
 }

@@ -30,6 +30,7 @@ class ChatActivity : AppCompatActivity() {
         setContentView(view)
         val profileURL = intent.getStringExtra("image")
         val name = intent.getStringExtra("name")
+        binding.logo.text = name
         binding.rvChat.adapter = ChatAdapter(chats)
         var botChat: String
         binding.rvChat.layoutManager = LinearLayoutManager(this)
