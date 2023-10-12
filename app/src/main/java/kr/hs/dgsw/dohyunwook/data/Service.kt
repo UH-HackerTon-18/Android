@@ -1,5 +1,7 @@
 package kr.hs.dgsw.dohyunwook.data
 
+import kr.hs.dgsw.dohyunwook.domain.ChatRequest
+import kr.hs.dgsw.dohyunwook.domain.ChatResponse
 import kr.hs.dgsw.dohyunwook.domain.RequestMakeCharacter
 import kr.hs.dgsw.dohyunwook.domain.ResponseGetInfoById
 import kr.hs.dgsw.dohyunwook.domain.ResponseGetInfoByWorkldID
@@ -20,4 +22,8 @@ interface Service {
 
     @GET("characters/")
     fun getInfoById(@Path("character-id") id: String): Call<ResponseGetInfoById>
+
+    @POST("/characters/chat/{character-id}")
+    fun postChat(@Path("character-id") id: String, @Body message: ChatRequest): Call<ChatResponse>
+
 }

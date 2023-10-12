@@ -32,7 +32,7 @@ class RelationAdapter(private val items: List<Relation>) : RecyclerView.Adapter<
         private val itemExplainText: TextView = itemView.findViewById(R.id.tv_item_chat_text)
 
         fun bind(relation: Relation) {
-            Glide.with(itemView.context).load(R.layout.item_relation).into(itemImage)
+            Glide.with(itemView.context).load("https://flexible.img.hani.co.kr/flexible/normal/640/828/imgdb/child/2023/1012/16970864058927_20231012501437.jpg").into(itemImage)
             itemNameText.text = relation.name
             itemExplainText.text = relation.explain
         }

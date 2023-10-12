@@ -32,7 +32,7 @@ class ChatAdapter(private val myMessage: List<Chat>) : RecyclerView.Adapter<Chat
         private val botMessage: TextView = itemView.findViewById(R.id.tv_item_chat_text_from_bot)
         private val userMessage: TextView = itemView.findViewById(R.id.tv_item_chat_from_me1)
         fun bind(chat: Chat) {
-            Glide.with(itemView.context).load(R.layout.item_relation).into(botImage)
+            Glide.with(itemView.context).load("https://flexible.img.hani.co.kr/flexible/normal/640/828/imgdb/child/2023/1012/16970864058927_20231012501437.jpg").into(botImage)
             botNameText.text = chat.name
             botMessage.text = chat.botTexts
             userMessage.text = chat.userTexts

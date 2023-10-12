@@ -23,6 +23,7 @@ class OneMakeResultActivity : AppCompatActivity() {
         val worldID = intent.getStringExtra("message_key")
         var imageUr = listOf<String>()
         var name = listOf<String>()
+        var id = listOf<String>()
         binding.btnBack.setOnClickListener {
             val intent = Intent(applicationContext, IntroPage::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -39,11 +40,13 @@ class OneMakeResultActivity : AppCompatActivity() {
                         val responseModel = response.body()
                         val imageUrls = responseModel!!.characters.map { it.profile_image_url }
                         imageUr = imageUrls
-                        val explains = responseModel!!.characters.map { it.name + "\n" + it.gender + "\n" + it.age + "\n" + it.job + "\n" + it.character}
-                        val names = responseModel!!.characters.map { it.name }
+                        val explains = responseModel.characters.map { it.name + "\n" + it.gender + "\n" + it.age + "\n" + it.job + "\n" + it.character}
+                        val names = responseModel.characters.map { it.name }
                         name = names
-                        val relations = responseModel!!.characters.map { it.relation }
+                        val relations = responseModel.characters.map { it.relation }
                         val pagerAdapter = ImagePagerAdapter(imageUrls, explains, names, relations)
+                        val ids = responseModel.characters.map { it.id }
+                        id = ids
                         binding.viewPager.adapter = pagerAdapter
                     } else {
                         val errorBodyString = response.errorBody()?.string()
@@ -74,6 +77,7 @@ class OneMakeResultActivity : AppCompatActivity() {
             val currentPosition = binding.viewPager.currentItem
             intent.putExtra("image", imageUr[currentPosition])
             intent.putExtra("name", name[currentPosition])
+            intent.putExtra("id", id[currentPosition])
             Log.d("OneMakeResultActivity", "현재 position: $currentPosition")
             startActivity(intent)
         }
