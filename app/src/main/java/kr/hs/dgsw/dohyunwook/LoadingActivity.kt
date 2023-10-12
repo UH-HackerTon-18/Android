@@ -58,7 +58,7 @@ class LoadingActivity : AppCompatActivity() {
                 "onCreate:!!!!!!!!!!!@ ",
                 "${receivedData.world_story}  ${receivedData.character_count}   ${receivedData.main_character?.species}"
             )
-            val needTime: Int = (characterCount * 20 * 1000)
+            val needTime: Int = (characterCount * 5 * 1000)
             for (progress in 0..100) {
                 // UI 업데이트를 위해 Handler를 사용
                 Handler(Looper.getMainLooper()).post {

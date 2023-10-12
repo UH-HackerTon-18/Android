@@ -40,6 +40,7 @@ android {
 }
 
 dependencies {
+    implementation ("com.google.android.exoplayer:exoplayer:2.19.1")
     implementation("androidx.viewpager2:viewpager2:1.1.0-beta02")
     implementation("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.13.0")
