@@ -27,7 +27,7 @@ class OneMakeActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
             val intent = Intent(this, OneMakeOptionActivity::class.java)
-            intent.putExtra("message_key", message.toString())
+            intent.putExtra("message_key", message.toString() + "세계")
             intent.putExtra("number", number.toString())
             startActivity(intent)
         }

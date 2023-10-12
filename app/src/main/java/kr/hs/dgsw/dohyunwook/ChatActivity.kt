@@ -1,18 +1,18 @@
 package kr.hs.dgsw.dohyunwook
 
 import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import kr.hs.dgsw.dohyunwook.adapter.ChatAdapter
 import kr.hs.dgsw.dohyunwook.data.Client
 import kr.hs.dgsw.dohyunwook.databinding.ActivityChatBinding
-import kr.hs.dgsw.dohyunwook.databinding.ActivityOneMakeResultBinding
 import kr.hs.dgsw.dohyunwook.domain.Chat
 import kr.hs.dgsw.dohyunwook.domain.ChatRequest
 import kr.hs.dgsw.dohyunwook.domain.ChatResponse
-import kr.hs.dgsw.dohyunwook.domain.ResponseGetInfoByWorkldID
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,6 +20,7 @@ import retrofit2.Response
 class ChatActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChatBinding
     var chats = mutableListOf<Chat>()
+    private lateinit var chatAdapter: ChatAdapter // ChatAdapter 변수 추가
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,15 +32,19 @@ class ChatActivity : AppCompatActivity() {
         val profileURL = intent.getStringExtra("image")
         val name = intent.getStringExtra("name")
         binding.logo.text = name
-        binding.rvChat.adapter = ChatAdapter(chats)
+        chatAdapter = ChatAdapter(chats) // ChatAdapter 초기화
+        binding.rvChat.adapter = chatAdapter
         var botChat: String
         binding.rvChat.layoutManager = LinearLayoutManager(this)
         binding.btnBack.setOnClickListener {
             finish()
         }
         binding.btnSend.setOnClickListener {
-
-            Client.service.postChat(id!!, ChatRequest(binding.etChat.text.toString()))
+            val text = binding.etChat.text.toString()
+            binding.etChat.text.clear()
+            chats.add(Chat("", text, "", ""))
+            chatAdapter.notifyDataSetChanged()
+            Client.service.postChat(id!!, ChatRequest(text))
                 .enqueue(object : Callback<ChatResponse> {
                     override fun onResponse(
                         call: Call<ChatResponse>,
@@ -52,13 +57,13 @@ class ChatActivity : AppCompatActivity() {
 
                             var chat = Chat(
                                 botChat,
-                                binding.etChat.text.toString(),
+                                text,
                                 profileURL!!,
                                 name!!
                             )
-                            chats.add(chat) // 데이터 추가
-                            Log.d("onCreate: chats", "$chats")
-                            binding.rvChat.adapter?.notifyDataSetChanged()
+                            chats.removeAt(chats.size - 1)
+                            chats.add(chat)
+                            chatAdapter.notifyDataSetChanged()   // 어댑터에 데이터 변경 알림
                         } else {
                             val errorBodyString = response.errorBody()?.string()
                             Log.d("Error Response Body", errorBodyString ?: "Empty error body")

@@ -30,28 +30,31 @@ class LoadingActivity : AppCompatActivity() {
         val characterCount = receivedData!!.character_count
         val character = receivedData!!.main_character
 
-        Client.service.postData(receivedData!!)
-            .enqueue(object : Callback<ResponseMakeCharacter> {
-                override fun onResponse(
-                    call: Call<ResponseMakeCharacter>,
-                    response: Response<ResponseMakeCharacter>
-                ) {
-                    if (response.isSuccessful) {
-                        Log.d("onResponse: @@@@@@@@@@@@@", "성공")
-                        val responseModel = response.body()
-                        val intent = Intent(applicationContext, OneMakeResultActivity::class.java)
-                        intent.putExtra("message_key", responseModel!!.world_id)
-                        startActivity(intent)
-                    } else {
-                        Log.d("onResponse:!!!!!!", response.errorBody().toString())
-                    }
-                }
+        intent.putExtra("message_key", "9c8b77ee-ab8b-4a1e-abc4-62758be6fcf8")
+        startActivity(intent)
 
-                override fun onFailure(call: Call<ResponseMakeCharacter>, t: Throwable) {
-                    Log.d("onFailure: ", "###########")
-                    Toast.makeText(applicationContext, "네트워크 오류", Toast.LENGTH_SHORT).show()
-                }
-            })
+//        Client.service.postData(receivedData!!)
+//            .enqueue(object : Callback<ResponseMakeCharacter> {
+//                override fun onResponse(
+//                    call: Call<ResponseMakeCharacter>,
+//                    response: Response<ResponseMakeCharacter>
+//                ) {
+//                    if (response.isSuccessful) {
+//                        Log.d("onResponse: @@@@@@@@@@@@@", "성공")
+//                        val responseModel = response.body()
+//                        val intent = Intent(applicationContext, OneMakeResultActivity::class.java)
+//                        intent.putExtra("message_key", responseModel!!.world_id)
+//                        startActivity(intent)
+//                    } else {
+//                        Log.d("onResponse:!!!!!!", response.errorBody().toString())
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<ResponseMakeCharacter>, t: Throwable) {
+//                    Log.d("onFailure: ", "###########")
+//                    Toast.makeText(applicationContext, "네트워크 오류", Toast.LENGTH_SHORT).show()
+//                }
+//            })
 
         Thread(Runnable {
             Log.d(
