@@ -3,7 +3,7 @@ package kr.hs.dgsw.dohyunwook
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.text.Editable
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import kr.hs.dgsw.dohyunwook.databinding.ActivityOneMakeOptionBinding
 import kr.hs.dgsw.dohyunwook.domain.MainCharacter
@@ -56,12 +56,13 @@ class OneMakeOptionActivity : AppCompatActivity() {
             val age = binding.etOld.text
             val backGroundStory = binding.etBackgroundStory.text
             val character = binding.etCharacter.text
-            var characterNumber = number
+            val characterNumber = number
             val species = binding.etSpecies.text
             val speciesExplain = binding.etSpeciesExplain.text
             val name = binding.etName.text
             val style = binding.etStyle.text
             val title = receivedMessage
+            Log.d("onCreate:!!!!!!!!!!!!! ", number.toString())
             val requestMakeCharacter:RequestMakeCharacter = RequestMakeCharacter(
                 title.toString(),
                 MainCharacter(

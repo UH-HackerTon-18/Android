@@ -1,14 +1,13 @@
 package kr.hs.dgsw.dohyunwook
 
 import ImagePagerAdapter
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import kr.hs.dgsw.dohyunwook.data.Client
 import kr.hs.dgsw.dohyunwook.databinding.ActivityOneMakeResultBinding
-import kr.hs.dgsw.dohyunwook.domain.Relation
-import kr.hs.dgsw.dohyunwook.domain.ResponseGetInfoById
 import kr.hs.dgsw.dohyunwook.domain.ResponseGetInfoByWorkldID
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,47 +21,42 @@ class OneMakeResultActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
         val worldID = intent.getStringExtra("message_key")
+        var imageUr = listOf<String>()
+        var name = listOf<String>()
+        binding.btnBack.setOnClickListener {
+            val intent = Intent(applicationContext, IntroPage::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+        }
+        Client.service.getInfoByWorldId(worldID!!)
+            .enqueue(object : Callback<ResponseGetInfoByWorkldID> {
+                override fun onResponse(
+                    call: Call<ResponseGetInfoByWorkldID>,
+                    response: Response<ResponseGetInfoByWorkldID>
+                ) {
+                    if (response.isSuccessful) {
+                        Log.d("onResponse: 성공", "${response.body()}")
+                        val responseModel = response.body()
+                        val imageUrls = responseModel!!.characters.map { it.profile_image_url }
+                        imageUr = imageUrls
+                        val explains = responseModel!!.characters.map { it.name + "\n" + it.gender + "\n" + it.age + "\n" + it.job + "\n" + it.character}
+                        val names = responseModel!!.characters.map { it.name }
+                        name = names
+                        val relations = responseModel!!.characters.map { it.relation }
+                        val pagerAdapter = ImagePagerAdapter(imageUrls, explains, names, relations)
+                        binding.viewPager.adapter = pagerAdapter
+                    } else {
+                        val errorBodyString = response.errorBody()?.string()
+                        Log.d("Error Response Body", errorBodyString ?: "Empty error body")
+                    }
+                }
 
-//        Client.service.getInfoByWorldId(worldID!!)
-//                .enqueue(object : Callback<ResponseGetInfoByWorkldID> {
-//                    override fun onResponse(
-//                        call: Call<ResponseGetInfoByWorkldID>,
-//                        response: Response<ResponseGetInfoByWorkldID>
-//                    ) {
-//                        if (response.isSuccessful) {
-//                            val responseModel = response.body()
-//                        } else {
-//                            Log.d("onResponse:!!!!!!", response.errorBody().toString())
-//                        }
-//                    }
-//
-//                    override fun onFailure(call: Call<ResponseGetInfoByWorkldID>, t: Throwable) {
-//
-//                    }
-//                })
+                override fun onFailure(call: Call<ResponseGetInfoByWorkldID>, t: Throwable) {
+                    Log.d("onResponse:", "실패")
+                }
+            })
 
 
-        val imageUrls = listOf(
-            "https://flexible.img.hani.co.kr/flexible/normal/850/556/imgdb/original/2023/1012/20231012500060.jpg",
-            "https://flexible.img.hani.co.kr/flexible/normal/850/556/imgdb/original/2023/1012/20231012500060.jpg",
-            "https://flexible.img.hani.co.kr/flexible/normal/850/556/imgdb/original/2023/1012/20231012500060.jpg"
-        )
-        val explains = listOf(
-            "이것은 설명1",
-            "이것은 설명2",
-            "이것은 설명3"
-        )
-        val names = listOf(
-            "이것은 이름1",
-            "이것은 이름2",
-            "이것은 이름3"
-        )
-        val relations = listOf(
-            Relation("test123", "이것은 name1", "이것은 explain1"),
-            Relation("test123", "이것은 name2", "이것은 explain2"),
-            Relation("test123", "이것은 name3", "이것은 explain3"),
-        )
-        val pagerAdapter = ImagePagerAdapter(imageUrls, explains, names, relations)
 
         binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -73,11 +67,15 @@ class OneMakeResultActivity : AppCompatActivity() {
             }
         })
 
-        binding.viewPager.adapter = pagerAdapter
+
 
         binding.btnStart.setOnClickListener {
+            val intent = Intent(this, ChatActivity::class.java)
             val currentPosition = binding.viewPager.currentItem
+            intent.putExtra("image", imageUr[currentPosition])
+            intent.putExtra("name", name[currentPosition])
             Log.d("OneMakeResultActivity", "현재 position: $currentPosition")
+            startActivity(intent)
         }
     }
 }

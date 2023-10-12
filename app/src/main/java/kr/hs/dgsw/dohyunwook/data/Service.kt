@@ -8,15 +8,16 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface Service {
-    @POST("/")
+    @POST("characters/")
     fun postData(@Body requestBody: RequestMakeCharacter): Call<ResponseMakeCharacter>
 
-    @GET("/world/")
-    fun getInfoByWorldId(@Query("world-id") id: String): Call<ResponseGetInfoByWorkldID>
+    @GET("characters/world/{world-id}")
+    fun getInfoByWorldId(@Path("world-id") id: String): Call<ResponseGetInfoByWorkldID>
 
-    @GET("/")
-    fun getInfoById(@Query("character-id") id: String): Call<ResponseGetInfoById>
+    @GET("characters/")
+    fun getInfoById(@Path("character-id") id: String): Call<ResponseGetInfoById>
 }

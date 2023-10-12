@@ -10,15 +10,15 @@ object Client {
 
     //서버 요청시간 정의
     val okHttpClient = OkHttpClient.Builder()
-        .connectTimeout(120, TimeUnit.SECONDS)
-        .readTimeout(120, TimeUnit.SECONDS)
-        .writeTimeout(120, TimeUnit.SECONDS)
+        .connectTimeout(1000, TimeUnit.SECONDS)
+        .readTimeout(1000, TimeUnit.SECONDS)
+        .writeTimeout(1000, TimeUnit.SECONDS)
         .build()
 
     var gson = GsonBuilder().setLenient().create()
 
     val retrofit = Retrofit.Builder()
-        .baseUrl("192.168.11.15")
+        .baseUrl("http://192.168.199.171:3000/")
         .addConverterFactory(GsonConverterFactory.create(gson))
         .client(okHttpClient)
         .build()
