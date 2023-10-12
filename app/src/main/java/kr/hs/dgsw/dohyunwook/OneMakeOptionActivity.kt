@@ -19,6 +19,7 @@ class OneMakeOptionActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
         val receivedMessage = intent.getStringExtra("message_key")
+        val number = intent.getStringExtra("number")
         val intent = Intent(this, LoadingActivity::class.java)
         var male = "남자"
         val initialMaleBackground: Drawable = resources.getDrawable(R.drawable.background_unselected_button, null)
@@ -55,15 +56,12 @@ class OneMakeOptionActivity : AppCompatActivity() {
             val age = binding.etOld.text
             val backGroundStory = binding.etBackgroundStory.text
             val character = binding.etCharacter.text
-            var characterNumber = binding.etCharacterNumber.text
+            var characterNumber = number
             val species = binding.etSpecies.text
             val speciesExplain = binding.etSpeciesExplain.text
             val name = binding.etName.text
             val style = binding.etStyle.text
             val title = receivedMessage
-            if (characterNumber.toString().isNullOrEmpty()) {
-                characterNumber = Editable.Factory.getInstance().newEditable("1")
-            }
             val requestMakeCharacter:RequestMakeCharacter = RequestMakeCharacter(
                 title.toString(),
                 MainCharacter(

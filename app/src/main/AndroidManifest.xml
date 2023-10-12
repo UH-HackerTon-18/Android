@@ -15,6 +15,9 @@
         android:theme="@style/Theme.DoHyunWook"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".OneMakeResultActivity"
             android:exported="false" />
         <activity

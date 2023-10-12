@@ -78,6 +78,7 @@
         app:layout_constraintTop_toBottomOf="@id/logo" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cv_story"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginTop="10dp"
@@ -98,6 +99,47 @@
             android:hint="주인공과 그 스토리를 입력해주세요"
             android:textColorHint="@color/hint_color" />
     </androidx.cardview.widget.CardView>
+
+    <EditText
+        android:id="@+id/et_character_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/gl_left"
+        app:layout_constraintEnd_toEndOf="@id/gl_right"
+        app:layout_constraintTop_toBottomOf="@id/tv_character_number"
+        android:background="@drawable/background_edit_text_line"
+        android:hint="등장인물의 수 (주인공 포함)"
+        android:inputType="number"
+        android:text="1"
+        android:paddingStart="10dp"
+        android:textColorHint="@color/hint_color"
+        android:fontFamily="@font/omyu"
+        android:textColor="@color/white"
+        android:maxLines="1"/>
+
+    <TextView
+        android:id="@+id/tv_character_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="등장인물의 수"
+        app:layout_constraintTop_toBottomOf="@id/cv_story"
+        app:layout_constraintStart_toStartOf="@id/gl_left"
+        android:layout_marginTop="35dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/omyu"
+        android:textSize="18dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/tv_character_number"
+        app:layout_constraintBottom_toBottomOf="@id/tv_character_number"
+        android:textColor="@color/red"
+        android:textSize="18dp"
+        android:text="*"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/omyu"
+        />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/btn_start"

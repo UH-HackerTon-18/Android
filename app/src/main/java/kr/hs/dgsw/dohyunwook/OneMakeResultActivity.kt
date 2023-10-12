@@ -79,7 +79,5 @@ class OneMakeResultActivity : AppCompatActivity() {
             val currentPosition = binding.viewPager.currentItem
             Log.d("OneMakeResultActivity", "현재 position: $currentPosition")
         }
-
-
     }
 }

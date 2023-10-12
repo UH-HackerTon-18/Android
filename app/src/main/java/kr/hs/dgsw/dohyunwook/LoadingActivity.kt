@@ -24,11 +24,11 @@ class LoadingActivity : AppCompatActivity() {
         setContentView(view)
         val receivedIntent = intent
         val receivedData = receivedIntent.getSerializableExtra("data") as? RequestMakeCharacter
-        if (receivedData != null) {
-            val world = receivedData.world_story
-            val characterCount = receivedData.character_count
-            val character = receivedData.main_character
-        }
+
+        val world = receivedData!!.world_story
+        val characterCount = receivedData!!.character_count
+        val character = receivedData!!.main_character
+
         Thread(Runnable {
 //            Client.characterService.postData(receivedData!!)
 //                .enqueue(object : Callback<ResponseMakeCharacter> {
@@ -51,7 +51,7 @@ class LoadingActivity : AppCompatActivity() {
 //
 //                    }
 //                })
-
+            val needTime:Int = (characterCount * 13 * 1000)
             for (progress in 0..100) {
                 // UI 업데이트를 위해 Handler를 사용
                 Handler(Looper.getMainLooper()).post {
@@ -60,7 +60,7 @@ class LoadingActivity : AppCompatActivity() {
 
                 // 100ms마다 업데이트
                 try {
-                    Thread.sleep(30)
+                    Thread.sleep((needTime / 100).toLong())
                 } catch (e: InterruptedException) {
                     e.printStackTrace()
                 }

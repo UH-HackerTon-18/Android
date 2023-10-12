@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="green">#FF3EDB57</color>
     <color name="red">#FFEB3636</color>
+    <color name="chat_box">#353535</color>
     <color name="box_gray">#FFA9A9A9</color>
     <color name="hint_color">#FFD9D9D9</color>
 </resources>
