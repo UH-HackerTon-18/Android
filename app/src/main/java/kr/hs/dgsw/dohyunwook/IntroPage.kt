@@ -29,7 +29,7 @@ class IntroPage : AppCompatActivity() {
         exoPlayer = ExoPlayer.Builder(this).build()
         binding.playerView.player = exoPlayer
 
-        val uri = RawResourceDataSource.buildRawResourceUri(R.raw.sammy11)
+        val uri = RawResourceDataSource.buildRawResourceUri(R.raw.sammy111)
         val mediaItem = MediaItem.fromUri(uri)
 
         exoPlayer.setMediaItem(mediaItem)
