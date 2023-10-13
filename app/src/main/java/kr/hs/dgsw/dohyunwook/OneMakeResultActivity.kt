@@ -53,7 +53,7 @@ class OneMakeResultActivity : AppCompatActivity() {
                         val errorBodyString = response.errorBody()?.string()
                         Log.d("Error Response Body", errorBodyString ?: "Empty error body")
                         binding.viewPager.adapter = ImagePagerAdapter(listOf(R.drawable.image8.toString()), listOf("값을 불러오지 못했습니다."), listOf("값을 불러오지 못했습니다."), listOf(listOf(
-                            Relation("1", "untitle", "값을 불러오지 못했습니다.")
+                            Relation("1", " ", "untitle", "값을 불러오지 못했습니다.")
                         )))
                     }
                 }
@@ -61,7 +61,7 @@ class OneMakeResultActivity : AppCompatActivity() {
                 override fun onFailure(call: Call<ResponseGetInfoByWorkldID>, t: Throwable) {
                     Log.d("onResponse:", "실패")
                     binding.viewPager.adapter = ImagePagerAdapter(listOf(R.drawable.image8.toString()), listOf("값을 불러오지 못했습니다."), listOf("값을 불러오지 못했습니다."), listOf(listOf(
-                        Relation("1", "untitle", "값을 불러오지 못했습니다.")
+                        Relation("1", "","untitle", "값을 불러오지 못했습니다.")
                     )))
                 }
             })

@@ -30,35 +30,35 @@ class LoadingActivity : AppCompatActivity() {
         val characterCount = receivedData!!.character_count
         val character = receivedData!!.main_character
 
-//        Client.service.postData(receivedData!!)
-//            .enqueue(object : Callback<ResponseMakeCharacter> {
-//                override fun onResponse(
-//                    call: Call<ResponseMakeCharacter>,
-//                    response: Response<ResponseMakeCharacter>
-//                ) {
-//                    if (response.isSuccessful) {
-//                        Log.d("onResponse: @@@@@@@@@@@@@", "성공")
-//                        val responseModel = response.body()
-//                        val intent = Intent(applicationContext, OneMakeResultActivity::class.java)
-//                        intent.putExtra("message_key", responseModel!!.world_id)
-//                        startActivity(intent)
-//                    } else {
-//                        Log.d("onResponse:!!!!!!", response.errorBody().toString())
-//                    }
-//                }
-//
-//                override fun onFailure(call: Call<ResponseMakeCharacter>, t: Throwable) {
-//                    Log.d("onFailure: ", "###########")
-//                    Toast.makeText(applicationContext, "네트워크 오류", Toast.LENGTH_SHORT).show()
-//                }
-//            })
+        Client.service.postData(receivedData!!)
+            .enqueue(object : Callback<ResponseMakeCharacter> {
+                override fun onResponse(
+                    call: Call<ResponseMakeCharacter>,
+                    response: Response<ResponseMakeCharacter>
+                ) {
+                    if (response.isSuccessful) {
+                        Log.d("onResponse: @@@@@@@@@@@@@", "성공")
+                        val responseModel = response.body()
+                        val intent = Intent(applicationContext, OneMakeResultActivity::class.java)
+                        intent.putExtra("message_key", responseModel!!.world_id)
+                        startActivity(intent)
+                    } else {
+                        Log.d("onResponse:!!!!!!", response.errorBody().toString())
+                    }
+                }
+
+                override fun onFailure(call: Call<ResponseMakeCharacter>, t: Throwable) {
+                    Log.d("onFailure: ", "###########")
+                    Toast.makeText(applicationContext, "네트워크 오류", Toast.LENGTH_SHORT).show()
+                }
+            })
 
         Thread(Runnable {
             Log.d(
                 "onCreate:!!!!!!!!!!!@ ",
                 "${receivedData.world_story}  ${receivedData.character_count}   ${receivedData.main_character?.species}"
             )
-            val needTime: Int = (characterCount * 5 * 1000)
+            val needTime: Int = (characterCount * 20 * 1000) + 60 * 1000
             for (progress in 0..100) {
                 // UI 업데이트를 위해 Handler를 사용
                 Handler(Looper.getMainLooper()).post {
@@ -72,8 +72,6 @@ class LoadingActivity : AppCompatActivity() {
                     e.printStackTrace()
                 }
             }
-            intent.putExtra("message_key", "0bdfc441-db26-4d6e-8d9e-5bd63478a74c")
-            startActivity(intent)
         }).start()
     }
 }
